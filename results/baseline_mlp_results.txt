@@ -1,0 +1,10 @@
+Test 1
+16.05.2026
+
+Epochs: 5
+Train Accuracy: 98.70%
+Validation Accuracy: 97.23%
+Test Accuracy: 97.62%
+Model: Baseline MLP (784 → 256 → 128 → 10)
+Optimizer: Adam (lr=0.001)
+Loss: CrossEntropyLoss
