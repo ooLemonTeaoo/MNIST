@@ -2,9 +2,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from preprocess import get_mnist_loaders
-from models.baseline_mlp import BaselineMLP
-from models.mlp_utils import flatten_for_mlp
+from preprocess import get_mnist_loaders, flatten_for_mlp
+from models.mlp import BaselineMLP
 
 
 def train(model, train_loader, val_loader, epochs=5):

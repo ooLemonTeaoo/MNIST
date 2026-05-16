@@ -8,6 +8,9 @@ import torch.nn.functional as F
 def one_hot(labels, num_classes=10):
     return F.one_hot(labels, num_classes=num_classes).float()
 
+def flatten_for_mlp(images):
+    # Converts (B, 1, 28, 28) → (B, 784)
+    return images.view(images.size(0), -1)
 
 def get_mnist_loaders(batch_size=64, val_split=0.1):
     # Transform image(0 - 255) to PyTorch tensor(0 - 1)
