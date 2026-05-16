@@ -14,6 +14,7 @@ def train(model, train_loader, val_loader, epochs=5):
 
     # Logit Roundoff Error
     criterion = nn.CrossEntropyLoss()
+    # Faster Learning Rate Approach
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
     for epoch in range(epochs):
