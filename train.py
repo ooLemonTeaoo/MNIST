@@ -107,7 +107,9 @@ if __name__ == "__main__":
 
     train_loader, val_loader, test_loader = get_mnist_loaders()
 
-    model = BaselineMLP()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    model = BaselineMLP().to(device)
 
     model = train(model, train_loader, val_loader, epochs=5)
 
