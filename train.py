@@ -8,7 +8,7 @@ import torch.optim as optim
 from preprocess import get_mnist_loaders
 
 # MLP model
-# from models.mlp import BaselineMLP
+# from models.baseline_mlp import BaselineMLP
 # CNN model
 from models.cnn import CNN
 
