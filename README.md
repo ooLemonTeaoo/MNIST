@@ -55,27 +55,27 @@ Produces 10 logits corresponding to digit classes (0–9)
 
 ## Results
 MLP (Baseline Model)
-Epochs: 5
-Train Accuracy: 98.70%
-Validation Accuracy: 97.23%
-Test Accuracy: 97.62%
-Model: Baseline MLP (784 → 256 → 128 → 10)
-Optimizer: Adam (lr=0.001)
-Loss: CrossEntropyLoss
+- Epochs: 5
+- Train Accuracy: 98.70%
+- Validation Accuracy: 97.23%
+- Test Accuracy: 97.62%
+- Model: Baseline MLP (784 → 256 → 128 → 10)
+- Optimizer: Adam (lr=0.001)
+- Loss: CrossEntropyLoss
 
 CNN (Improved Model)
-Epochs: 5
-Train Accuracy: 99.24%
-Validation Accuracy: 98.58%
-Test Accuracy: 99.07%
-Model: CNN (Conv2D → ReLU → MaxPool → Conv2D → ReLU → MaxPool → Flatten → 128 → 10)
-Optimizer: Adam (lr=0.001)
-Loss: CrossEntropyLoss
+- Epochs: 5
+- Train Accuracy: 99.24%
+- Validation Accuracy: 98.58%
+- Test Accuracy: 99.07%
+- Model: CNN (Conv2D → ReLU → MaxPool → Conv2D → - ReLU → MaxPool → Flatten → 128 → 10)
+- Optimizer: Adam (lr=0.001)
+- Loss: CrossEntropyLoss
 
 Key Observation
-CNN outperforms MLP in all metrics
-Best improvement seen in test accuracy (+1.45%)
-CNN generalizes better due to spatial feature learning
+- CNN outperforms MLP in all metrics
+- Best improvement seen in test accuracy (+1.45%)
+- CNN generalizes better due to spatial feature learning
 
 ## Features
 - Implements two deep learning models (MLP and CNN) for MNIST digit classification
