@@ -2,8 +2,15 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from preprocess import get_mnist_loaders, flatten_for_mlp
-from models.mlp import BaselineMLP
+# MLP model
+# from preprocess import get_mnist_loaders, flatten_for_mlp
+# CNN model
+from preprocess import get_mnist_loaders
+
+# MLP model
+# from models.mlp import BaselineMLP
+# CNN model
+from models.cnn import CNN
 
 
 def train(model, train_loader, val_loader, epochs=5):
@@ -25,8 +32,11 @@ def train(model, train_loader, val_loader, epochs=5):
         train_total = 0
 
         for images, labels in train_loader:
+            # MLP Model
+            # images = flatten_for_mlp(images).to(device)
+            # CNN Model
+            images = images.to(device)
 
-            images = flatten_for_mlp(images).to(device)
             labels = labels.to(device)
 
             optimizer.zero_grad()
@@ -54,7 +64,10 @@ def train(model, train_loader, val_loader, epochs=5):
 
             for images, labels in val_loader:
 
-                images = flatten_for_mlp(images).to(device)
+                # MLP Model
+                # images = flatten_for_mlp(images).to(device)
+                # CNN Model
+                images = images.to(device)
                 labels = labels.to(device)
 
                 outputs = model(images)
@@ -87,7 +100,10 @@ def test(model, test_loader):
 
         for images, labels in test_loader:
 
-            images = flatten_for_mlp(images).to(device)
+            # MLP Model
+            # images = flatten_for_mlp(images).to(device)
+            # CNN Model
+            images = images.to(device)
             labels = labels.to(device)
 
             outputs = model(images)
@@ -109,12 +125,17 @@ if __name__ == "__main__":
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    model = BaselineMLP().to(device)
+    # MLP model
+    # model = BaselineMLP().to(device)
+    # CNN model
+    model = CNN().to(device)
 
     model = train(model, train_loader, val_loader, epochs=5)
 
     test_acc = test(model, test_loader)
-
-    torch.save(model.state_dict(), "baseline_mlp.pth")
-
-    print("\nSaved: baseline_mlp.pth")
+    # MLP model
+    # torch.save(model.state_dict(), "baseline_mlp.pth")
+    # print("\nSaved: baseline_mlp.pth")
+    # CNN model
+    torch.save(model.state_dict(), "cnn_model.pth")
+    print("\nSaved: cnn_model.pth")
