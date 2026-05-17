@@ -1,0 +1,10 @@
+Test 1
+17.05.2026
+
+Epochs: 5
+Train Accuracy: 99.24%
+Validation Accuracy: 98.58%
+Test Accuracy: 99.07%
+Model: CNN (Conv2D → ReLU → MaxPool → Conv2D → ReLU → MaxPool → Flatten → 128 → 10)
+Optimizer: Adam (lr=0.001)
+Loss: CrossEntropyLoss

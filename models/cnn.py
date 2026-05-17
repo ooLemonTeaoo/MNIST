@@ -12,14 +12,18 @@ class CNN(nn.Module):
 
             # Conv Layer 1
             nn.Conv2d(
+                # Gray 1 Channel
                 in_channels=1,
+                # Learn 32 Features
                 out_channels=32,
+                # Each Feature 3x3 size
                 kernel_size=3,
+                # Padding
                 padding=1
             ),
             nn.ReLU(),
 
-            # Max Pooling
+            # Max Pooling (Reduce Noice)
             nn.MaxPool2d(kernel_size=2),
 
             # Conv Layer 2
@@ -37,6 +41,7 @@ class CNN(nn.Module):
 
         # Classification
         self.classifier = nn.Sequential(
+            # Convert to 1d vector
             nn.Flatten(),
 
             # 64 feature maps of size 7x7
