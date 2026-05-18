@@ -200,7 +200,7 @@ if __name__ == "__main__":
     os.makedirs("results", exist_ok=True)
     # MLP model
     # torch.save(model.state_dict(), "results/baseline_mlp.pth")
-    # print("\nSaved: baseline_mlp.pth")
+    # print("\nSaved: results\baseline_mlp.pth")
     # CNN model
     torch.save(model.state_dict(), "results/cnn_model.pth")
-    print("\nSaved: cnn_model.pth")
+    print("\nSaved: results\cnn_model.pth")

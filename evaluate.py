@@ -43,6 +43,8 @@ def plot_metrics(train_acc, val_acc, train_loss):
 
     plt.close()
 
+    print(f"Saved results → results\loss_plot.png")
+
 # Confusion Matrix
 def plot_confusion_matrix(model, test_loader, device):
 
@@ -79,34 +81,7 @@ def plot_confusion_matrix(model, test_loader, device):
 
     plt.close()
 
-# Classification Report
-def save_classification_report(model, test_loader, device):
-
-    model.eval()
-
-    all_preds = []
-    all_labels = []
-
-    with torch.no_grad():
-
-        for images, labels in test_loader:
-
-            images = images.to(device)
-            labels = labels.to(device)
-
-            outputs = model(images)
-
-            _, predicted = torch.max(outputs, 1)
-
-            all_preds.extend(predicted.cpu().numpy())
-            all_labels.extend(labels.cpu().numpy())
-
-    report = classification_report(all_labels, all_preds)
-
-    with open("results/classification_report.txt", "w") as f:
-        f.write(report)
-
-    print(report)
+    print(f"Saved results → results\confusion_matrix.png")
 
 # Digit Not Classified (9 Representative Mistakes)
 def show_misclassified(model, test_loader, device):
@@ -159,3 +134,36 @@ def show_misclassified(model, test_loader, device):
     plt.savefig("results/misclassified_digits.png")
 
     plt.close()
+
+    print(f"Saved results → results\misclassified_digits.png")
+
+# Classification Report
+def save_classification_report(model, test_loader, device):
+
+    model.eval()
+
+    all_preds = []
+    all_labels = []
+
+    with torch.no_grad():
+
+        for images, labels in test_loader:
+
+            images = images.to(device)
+            labels = labels.to(device)
+
+            outputs = model(images)
+
+            _, predicted = torch.max(outputs, 1)
+
+            all_preds.extend(predicted.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+
+    report = classification_report(all_labels, all_preds)
+
+    with open("results/classification_report.txt", "w") as f:
+        f.write(report)
+
+    print(f"Saved results → results\classification_report.txt")
+
+    print(report)
