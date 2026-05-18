@@ -1,6 +1,12 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from evaluate import (
+    plot_metrics,
+    plot_confusion_matrix,
+    save_classification_report,
+    show_misclassified
+)
 
 # MLP model
 # from preprocess import get_mnist_loaders, flatten_for_mlp
@@ -23,6 +29,11 @@ def train(model, train_loader, val_loader, epochs=5):
     # Faster Learning Rate Approach
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
+    # Metric Tracking
+    train_acc_history = []
+    val_acc_history = []
+    train_loss_history = []
+
     for epoch in range(epochs):
 
         # ---------------- TRAIN ----------------
@@ -30,6 +41,9 @@ def train(model, train_loader, val_loader, epochs=5):
 
         train_correct = 0
         train_total = 0
+
+        # Initiate Loss Record
+        running_loss = 0.0
 
         for images, labels in train_loader:
             # MLP Model
@@ -43,6 +57,9 @@ def train(model, train_loader, val_loader, epochs=5):
 
             outputs = model(images)
             loss = criterion(outputs, labels)
+
+            # Record Loss
+            running_loss += loss.item()
 
             loss.backward()
             optimizer.step()
@@ -79,13 +96,20 @@ def train(model, train_loader, val_loader, epochs=5):
 
         val_acc = 100 * val_correct / val_total
 
+        # Calculate Epoch Loaa
+        epoch_loss = running_loss / len(train_loader)
+
+        train_acc_history.append(train_acc)
+        val_acc_history.append(val_acc)
+        train_loss_history.append(epoch_loss)
+
         print(
             f"Epoch [{epoch+1}/{epochs}] "
             f"Train Acc: {train_acc:.2f}% | "
             f"Val Acc: {val_acc:.2f}%"
         )
 
-    return model
+    return model, train_acc_history, val_acc_history, train_loss_history
 
 
 def test(model, test_loader):
@@ -130,9 +154,21 @@ if __name__ == "__main__":
     # CNN model
     model = CNN().to(device)
 
-    model = train(model, train_loader, val_loader, epochs=5)
+    model, train_acc, val_acc, train_loss = train(
+        model,
+        train_loader,
+        val_loader,
+        epochs=5
+    )
 
     test_acc = test(model, test_loader)
+
+    # Run Evaluation Functions
+    plot_metrics(train_acc, val_acc, train_loss)
+    plot_confusion_matrix(model, test_loader, device)
+    save_classification_report(model, test_loader, device)
+    show_misclassified(model, test_loader, device)
+
     # MLP model
     # torch.save(model.state_dict(), "baseline_mlp.pth")
     # print("\nSaved: baseline_mlp.pth")
