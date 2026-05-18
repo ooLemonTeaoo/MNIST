@@ -194,13 +194,13 @@ if __name__ == "__main__":
     # Run Evaluation Functions
     plot_metrics(train_acc, val_acc, train_loss)
     plot_confusion_matrix(model, test_loader, device)
-    save_classification_report(model, test_loader, device)
     show_misclassified(model, test_loader, device)
+    save_classification_report(model, test_loader, device)
 
     os.makedirs("results", exist_ok=True)
     # MLP model
     # torch.save(model.state_dict(), "results/baseline_mlp.pth")
-    # print("\nSaved: results\baseline_mlp.pth")
+    # print("\nSaved: results/baseline_mlp.pth")
     # CNN model
     torch.save(model.state_dict(), "results/cnn_model.pth")
-    print("\nSaved: results\cnn_model.pth")
+    print("\nSaved: results/cnn_model.pth")

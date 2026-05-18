@@ -34,4 +34,4 @@ Loss: {loss}
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(content)
 
-    print(f"Saved results → {filepath}")
+    print(f"Saved results → results/{filename}")

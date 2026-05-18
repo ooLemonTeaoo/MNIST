@@ -43,7 +43,7 @@ def plot_metrics(train_acc, val_acc, train_loss):
 
     plt.close()
 
-    print(f"Saved results → results\loss_plot.png")
+    print(f"Saved results → results/loss_plot.png")
 
 # Confusion Matrix
 def plot_confusion_matrix(model, test_loader, device):
@@ -81,7 +81,7 @@ def plot_confusion_matrix(model, test_loader, device):
 
     plt.close()
 
-    print(f"Saved results → results\confusion_matrix.png")
+    print(f"Saved results → results/confusion_matrix.png")
 
 # Digit Not Classified (9 Representative Mistakes)
 def show_misclassified(model, test_loader, device):
@@ -135,7 +135,7 @@ def show_misclassified(model, test_loader, device):
 
     plt.close()
 
-    print(f"Saved results → results\misclassified_digits.png")
+    print(f"Saved results → results/misclassified_digits.png")
 
 # Classification Report
 def save_classification_report(model, test_loader, device):
@@ -164,6 +164,6 @@ def save_classification_report(model, test_loader, device):
     with open("results/classification_report.txt", "w") as f:
         f.write(report)
 
-    print(f"Saved results → results\classification_report.txt")
+    print(f"Saved results → results/classification_report.txt")
 
     print(report)
