@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import os
 
 from evaluate import (
     plot_metrics,
@@ -196,9 +197,10 @@ if __name__ == "__main__":
     save_classification_report(model, test_loader, device)
     show_misclassified(model, test_loader, device)
 
+    os.makedirs("results", exist_ok=True)
     # MLP model
-    # torch.save(model.state_dict(), "baseline_mlp.pth")
+    # torch.save(model.state_dict(), "results/baseline_mlp.pth")
     # print("\nSaved: baseline_mlp.pth")
     # CNN model
-    torch.save(model.state_dict(), "cnn_model.pth")
+    torch.save(model.state_dict(), "results/cnn_model.pth")
     print("\nSaved: cnn_model.pth")
