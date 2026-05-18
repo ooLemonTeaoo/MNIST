@@ -7,8 +7,11 @@ A machine learning project that classifies handwritten digits (0–9) using the 
 - Python
 - PyTorch (Deep Learning Framework)
 - Torchvision (Dataset & Image Processing)
-- CUDA (GPU acceleration, optional)
+- CUDA (GPU acceleration)
 - NumPy (indirect support via PyTorch)
+- Scikit-learn (Classification report (precision, recall, F1-score) Confusion matrix)
+- Matplotlib (Accuracy & loss curves Misclassified digit visualization)
+- Seaborn (confusion matrix heatmap)
 
 ## Dataset
 Dataset: MNIST
@@ -52,6 +55,15 @@ Architecture:
 Learns spatial patterns such as edges and shapes
 Uses pooling to reduce dimensionality and improve generalization
 Produces 10 logits corresponding to digit classes (0–9)
+
+## Evaluation Metrics
+The project includes additional evaluation techniques beyond accuracy:
+
+- Training and validation accuracy plots
+- Training loss visualization
+- Confusion matrix analysis
+- Classification report (precision, recall, F1-score)
+- Misclassified digit visualization
 
 ## Results
 MLP (Baseline Model)
@@ -97,7 +109,7 @@ git clone https://github.com/ooLemonTeaoo/MNIST.git
 cd MNIST
 
 Install dependencies
-pip install torch torchvision
+python -m pip install -r requirements.txt
 
 Run training (MLP or CNN) 
 (Require uncomment corresponding code for MLP/CNN and comment corresponding code for CNN/MLP)
@@ -105,7 +117,14 @@ python train.py
 
 Output
 Training + validation accuracy per epoch will be printed
-Test accuracy will be shown at the end
+Test accuracy will be shown and the process will be saved with current date in results folder
+
+Following information will also be saved in results folder:
+Accuracy & Loss Curves
+Confusion Matrix
+Misclassified Digits
+Classification Report (Also print)
+
 Model will be saved as .pth file:
 baseline_mlp.pth (MLP)
 cnn_model.pth (CNN)
