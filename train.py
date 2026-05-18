@@ -1,12 +1,15 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+
 from evaluate import (
     plot_metrics,
     plot_confusion_matrix,
     save_classification_report,
     show_misclassified
 )
+
+from save_results import save_results
 
 # MLP model
 # from preprocess import get_mnist_loaders, flatten_for_mlp
@@ -162,6 +165,30 @@ if __name__ == "__main__":
     )
 
     test_acc = test(model, test_loader)
+
+    # Output Current Results
+    # MLP model
+    # save_results(
+    #     filename="baseline_mlp_results.txt",
+    #     epochs=5,
+    #     train_acc=train_acc[-1],
+    #     val_acc=val_acc[-1],
+    #     test_acc=test_acc,
+    #     model_name="Baseline MLP (784 → 256 → 128 → 10)",
+    #     optimizer="Adam (lr=0.001)",
+    #     loss="CrossEntropyLoss"
+    # )
+    # CNN model
+    save_results(
+        filename="cnn_results.txt",
+        epochs=5,
+        train_acc=train_acc[-1],
+        val_acc=val_acc[-1],
+        test_acc=test_acc,
+        model_name="CNN (Conv2D → ReLU → MaxPool → Conv2D → ReLU → MaxPool → Flatten → 128 → 10)",
+        optimizer="Adam (lr=0.001)",
+        loss="CrossEntropyLoss"
+    )
 
     # Run Evaluation Functions
     plot_metrics(train_acc, val_acc, train_loss)

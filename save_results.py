@@ -1,0 +1,32 @@
+import datetime
+
+def save_results(
+    filename,
+    epochs,
+    train_acc,
+    val_acc,
+    test_acc,
+    model_name,
+    optimizer,
+    loss
+):
+
+    now = datetime.datetime.now()
+    timestamp = now.strftime("%d.%m.%Y %H:%M:%S")
+
+    content = f"""\
+{timestamp}
+
+Epochs: {epochs}
+Train Accuracy: {train_acc:.2f}%
+Validation Accuracy: {val_acc:.2f}%
+Test Accuracy: {test_acc:.2f}%
+Model: {model_name}
+Optimizer: {optimizer}
+Loss: {loss}
+"""
+
+    with open(filename, "w") as f:
+        f.write(content)
+
+    print(f"Saved results → {filename}")
