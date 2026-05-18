@@ -1,3 +1,4 @@
+import os
 import datetime
 
 def save_results(
@@ -10,6 +11,10 @@ def save_results(
     optimizer,
     loss
 ):
+
+    os.makedirs("results", exist_ok=True)
+
+    filepath = os.path.join("results", filename)
 
     now = datetime.datetime.now()
     timestamp = now.strftime("%d.%m.%Y %H:%M:%S")
@@ -26,7 +31,7 @@ Optimizer: {optimizer}
 Loss: {loss}
 """
 
-    with open(filename, "w", encoding="utf-8") as f:
+    with open(filepath, "w", encoding="utf-8") as f:
         f.write(content)
 
-    print(f"Saved results → {filename}")
+    print(f"Saved results → {filepath}")

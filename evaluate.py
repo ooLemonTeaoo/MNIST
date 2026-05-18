@@ -108,7 +108,7 @@ def save_classification_report(model, test_loader, device):
 
     print(report)
 
-# Digit Not Classified
+# Digit Not Classified (9 Representative Mistakes)
 def show_misclassified(model, test_loader, device):
 
     model.eval()
