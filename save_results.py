@@ -26,7 +26,7 @@ Optimizer: {optimizer}
 Loss: {loss}
 """
 
-    with open(filename, "w") as f:
+    with open(filename, "w", encoding="utf-8") as f:
         f.write(content)
 
     print(f"Saved results → {filename}")
