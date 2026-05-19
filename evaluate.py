@@ -235,4 +235,4 @@ def show_sample_predictions(model, test_loader, device):
 
     plt.close()
 
-    print("Saved results/sample_predictions.png")
+    print(f"Saved results → results/sample_predictions.png")
