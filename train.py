@@ -7,7 +7,8 @@ from evaluate import (
     plot_metrics,
     plot_confusion_matrix,
     save_classification_report,
-    show_misclassified
+    show_misclassified,
+    show_sample_predictions
 )
 
 from save_results import save_results
@@ -195,6 +196,7 @@ if __name__ == "__main__":
     plot_metrics(train_acc, val_acc, train_loss)
     plot_confusion_matrix(model, test_loader, device)
     show_misclassified(model, test_loader, device)
+    show_sample_predictions(model, test_loader, device)
     save_classification_report(model, test_loader, device)
 
     os.makedirs("results", exist_ok=True)
