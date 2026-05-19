@@ -56,14 +56,26 @@ Learns spatial patterns such as edges and shapes
 Uses pooling to reduce dimensionality and improve generalization
 Produces 10 logits corresponding to digit classes (0–9)
 
-## Evaluation Metrics
+## Visual Results
 The project includes additional evaluation techniques beyond accuracy:
 
-- Training and validation accuracy plots
-- Training loss visualization
-- Confusion matrix analysis
-- Classification report (precision, recall, F1-score)
-- Misclassified digit visualization
+### Training vs Validation Accuracy
+Shows learning progression, convergence behavior, and overall model stability during training.
+
+### Training Loss Visualization
+Displays how loss decreases across epochs as the model improves its predictions.
+
+### Confusion Matrix
+Highlights prediction distribution across digit classes and helps identify commonly confused digits.
+
+### Classification Report
+Provides detailed evaluation metrics including precision, recall, and F1-score for each digit class.
+
+### Sample Predictions
+Displays successful digit classifications from the CNN model.
+
+### Misclassified Digits
+Shows challenging examples where the model prediction differs from the true label for error analysis.
 
 ## Results
 MLP (Baseline Model)
